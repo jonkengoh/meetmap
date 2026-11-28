@@ -1,5 +1,6 @@
 
 from enum import Enum
+from datetime import datetime
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -42,3 +43,16 @@ class RoomCreateRequest(BaseModel):
             )
 
         return self
+
+class RoomCreateResponse(BaseModel):
+    room_id: str
+    room_code: str
+    name: str | None
+    room_type: RoomType
+    status: RoomStatus
+    created_at: datetime
+    expires_at: datetime | None
+
+    participant_id: str
+    display_name: str
+    session_token: str
